@@ -37,4 +37,21 @@ public class EventController {
         eventService.saveEvent(event);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @PutMapping("update")
+    public ResponseEntity<HttpStatus> updateEvent(@RequestBody Event event) {
+        boolean success = eventService.updateEvent(event);
+        if (success) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<HttpStatus> deleteEvent(@PathVariable Long id) {
+        eventService.deleteEvent(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -12,13 +12,13 @@ public class Event {
     private Long id;
     private String author;
     @Column(name = "date_of_addition")
-    private Date datOfAddition;
+    private Date dateOfAddition;
     private String title;
     private String description;
 
-    public Event(String author, Date datOfAddition, String title, String description) {
+    public Event(String author, Date dateOfAddition, String title, String description) {
         this.author = author;
-        this.datOfAddition = datOfAddition;
+        this.dateOfAddition = dateOfAddition;
         this.title = title;
         this.description = description;
     }
@@ -44,11 +44,11 @@ public class Event {
     }
 
     public Date getDatOfAddition() {
-        return datOfAddition;
+        return dateOfAddition;
     }
 
     public void setDatOfAddition(Date datOfAddition) {
-        this.datOfAddition = datOfAddition;
+        this.dateOfAddition = datOfAddition;
     }
 
     public String getTitle() {

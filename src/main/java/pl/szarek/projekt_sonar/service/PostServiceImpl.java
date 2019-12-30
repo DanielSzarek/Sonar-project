@@ -32,4 +32,25 @@ public class PostServiceImpl implements PostService {
     public void savePost(Post post) {
         postRepository.save(post);
     }
+
+    @Override
+    public boolean updatePost(Post newPost) {
+        Optional<Post> postToUpdate = getPostById(newPost.getId());
+        if (postToUpdate.isPresent()) {
+            Post post = postToUpdate.get();
+            post.setAuthor(newPost.getAuthor());
+            post.setContent(newPost.getContent());
+            post.setDatOfAddition(newPost.getDatOfAddition());
+            postRepository.saveAndFlush(post);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public void deletePost(Long id) {
+        postRepository.deleteById(id);
+    }
 }

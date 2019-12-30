@@ -3,6 +3,7 @@ package pl.szarek.projekt_sonar.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.szarek.projekt_sonar.model.Event;
 import pl.szarek.projekt_sonar.model.Post;
 import pl.szarek.projekt_sonar.service.PostService;
 
@@ -37,5 +38,22 @@ public class PostController {
         postService.savePost(post);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping("update")
+    public ResponseEntity<HttpStatus> updatePost(@RequestBody Post post) {
+        boolean success = postService.updatePost(post);
+        if (success) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<HttpStatus> deletePost(@PathVariable Long id) {
+        postService.deletePost(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
