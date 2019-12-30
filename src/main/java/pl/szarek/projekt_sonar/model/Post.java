@@ -12,12 +12,12 @@ public class Post {
     private long id;
     private String author;
     @Column(name = "date_of_addition")
-    private Date datOfAddition;
+    private Date dateOfAddition;
     private String content;
 
-    public Post(String author, Date datOfAddition, String content) {
+    public Post(String author, Date dateOfAddition, String content) {
         this.author = author;
-        this.datOfAddition = datOfAddition;
+        this.dateOfAddition = dateOfAddition;
         this.content = content;
     }
 
@@ -41,11 +41,11 @@ public class Post {
     }
 
     public Date getDatOfAddition() {
-        return datOfAddition;
+        return dateOfAddition;
     }
 
     public void setDatOfAddition(Date datOfAddition) {
-        this.datOfAddition = datOfAddition;
+        this.dateOfAddition = datOfAddition;
     }
 
     public String getContent() {
