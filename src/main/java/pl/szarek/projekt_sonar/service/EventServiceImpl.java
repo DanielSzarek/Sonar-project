@@ -41,7 +41,7 @@ public class EventServiceImpl implements EventService{
         if(eventToUpdate.isPresent()) {
             Event event = eventToUpdate.get();
             event.setAuthor(newEvent.getAuthor());
-            event.setDatOfAddition(newEvent.getDatOfAddition());
+            event.setDateOfAddition(newEvent.getDateOfAddition());
             event.setDescription(newEvent.getDescription());
             event.setTitle(newEvent.getTitle());
             eventRepository.saveAndFlush(event);
