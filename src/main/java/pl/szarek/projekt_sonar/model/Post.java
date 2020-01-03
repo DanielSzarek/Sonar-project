@@ -10,9 +10,12 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String author;
+
     @Column(name = "date_of_addition")
     private Date dateOfAddition;
+
     private String content;
 
     public Post(String author, Date dateOfAddition, String content) {
