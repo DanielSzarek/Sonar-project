@@ -19,8 +19,7 @@ public class Attendee {
 
     private String name;
 
-    public Attendee(Long id, String name) {
-        this.id = id;
+    public Attendee(String name) {
         this.name = name;
     }
 

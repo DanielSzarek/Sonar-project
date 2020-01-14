@@ -44,4 +44,9 @@ public class AttendeeServiceImpl implements AttendeeService {
     public boolean updateAttendee(Attendee attendee) {
         return false;
     }
+
+    @Override
+    public void deleteAllTestAttendees() {
+        attendeeRepository.deleteAll();
+    }
 }

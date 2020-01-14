@@ -3,9 +3,9 @@ package pl.szarek.projekt_sonar.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "events")
@@ -17,7 +17,7 @@ public class Event {
     private String author;
 
     @Column(name = "date_of_addition")
-    private Date dateOfAddition;
+    private Timestamp dateOfAddition;
     private String title;
     private String description;
 
@@ -25,14 +25,15 @@ public class Event {
     @OneToMany(mappedBy="event", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Attendee> attendees;
 
-    public Event(String author, Date dateOfAddition, String title, String description) {
+    public Event(String author, String title, String description) {
         this.author = author;
-        this.dateOfAddition = dateOfAddition;
+        this.dateOfAddition = Timestamp.valueOf(LocalDateTime.now());
         this.title = title;
         this.description = description;
     }
 
     public Event() {
+        this.dateOfAddition = Timestamp.valueOf(LocalDateTime.now());
     }
 
     public Long getId() {
@@ -67,11 +68,11 @@ public class Event {
         this.description = description;
     }
 
-    public Date getDateOfAddition() {
+    public Timestamp getDateOfAddition() {
         return dateOfAddition;
     }
 
-    public void setDateOfAddition(Date dateOfAddition) {
+    public void setDateOfAddition(Timestamp dateOfAddition) {
         this.dateOfAddition = dateOfAddition;
     }
 

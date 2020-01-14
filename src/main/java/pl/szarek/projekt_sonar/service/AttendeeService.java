@@ -1,9 +1,7 @@
 package pl.szarek.projekt_sonar.service;
 
 import pl.szarek.projekt_sonar.model.Attendee;
-import pl.szarek.projekt_sonar.model.Event;
 
-import javax.accessibility.AccessibleText;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,4 +16,6 @@ public interface AttendeeService {
     void deleteAttendee(Long id);
 
     boolean updateAttendee(Attendee attendee);
+
+    void deleteAllTestAttendees();
 }

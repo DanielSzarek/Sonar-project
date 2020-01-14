@@ -57,4 +57,10 @@ public class PostController {
         postService.deletePost(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @DeleteMapping("/tests/clear")
+    public ResponseEntity<HttpStatus> deleteTestEvents() {
+        postService.deleteAllTestPosts();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
