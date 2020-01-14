@@ -16,4 +16,6 @@ public interface EventService {
     boolean updateEvent(Event event);
 
     void deleteEvent(Long id);
+
+    void deleteAllTestEvents();
 }

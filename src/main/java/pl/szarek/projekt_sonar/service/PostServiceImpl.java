@@ -40,7 +40,7 @@ public class PostServiceImpl implements PostService {
             Post post = postToUpdate.get();
             post.setAuthor(newPost.getAuthor());
             post.setContent(newPost.getContent());
-            post.setDatOfAddition(newPost.getDatOfAddition());
+            post.setDateOfAddition(newPost.getDateOfAddition());
             postRepository.saveAndFlush(post);
             return true;
         }
@@ -52,5 +52,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public void deletePost(Long id) {
         postRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteAllTestPosts() {
+        postRepository.deleteAll();
     }
 }

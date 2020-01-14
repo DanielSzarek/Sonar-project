@@ -1,7 +1,8 @@
 package pl.szarek.projekt_sonar.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "posts")
@@ -14,17 +15,18 @@ public class Post {
     private String author;
 
     @Column(name = "date_of_addition")
-    private Date dateOfAddition;
+    private Timestamp dateOfAddition;
 
     private String content;
 
-    public Post(String author, Date dateOfAddition, String content) {
+    public Post(String author, String content) {
         this.author = author;
-        this.dateOfAddition = dateOfAddition;
+        this.dateOfAddition = Timestamp.valueOf(LocalDateTime.now());
         this.content = content;
     }
 
     public Post() {
+        this.dateOfAddition = Timestamp.valueOf(LocalDateTime.now());
     }
 
     public long getId() {
@@ -43,11 +45,11 @@ public class Post {
         this.author = author;
     }
 
-    public Date getDatOfAddition() {
+    public Timestamp getDateOfAddition() {
         return dateOfAddition;
     }
 
-    public void setDatOfAddition(Date datOfAddition) {
+    public void setDateOfAddition(Timestamp datOfAddition) {
         this.dateOfAddition = datOfAddition;
     }
 

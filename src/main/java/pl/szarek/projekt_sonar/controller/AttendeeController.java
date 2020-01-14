@@ -31,12 +31,6 @@ public class AttendeeController {
         return new ResponseEntity<>(attendeeService.findAllByEvent(id), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Attendee> getAttendeeById(@PathVariable("id") Long id) {
-        Optional<Attendee> attendee = attendeeService.findAttendeeById(id);
-        return attendee.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
     @PostMapping("/{id}")
     public ResponseEntity<HttpStatus> addAttendeToEvent(@RequestBody Attendee attendee, @PathVariable("id") Long id) {
         Optional<Event> event = eventService.getEventById(id);
@@ -53,6 +47,12 @@ public class AttendeeController {
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteAttendeFromEvent(@PathVariable("id") Long id) {
         attendeeService.deleteAttendee(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/tests/clear")
+    public ResponseEntity<HttpStatus> deletetestEvents() {
+        attendeeService.deleteAllTestAttendees();
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

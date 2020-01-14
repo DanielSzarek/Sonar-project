@@ -16,4 +16,6 @@ public interface PostService {
     boolean updatePost(Post post);
 
     void deletePost(Long id);
+
+    void deleteAllTestPosts();
 }
