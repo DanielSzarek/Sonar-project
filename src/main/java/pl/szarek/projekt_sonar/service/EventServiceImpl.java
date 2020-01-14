@@ -34,4 +34,31 @@ public class EventServiceImpl implements EventService{
     public void saveEvent(Event event) {
         eventRepository.save(event);
     }
+
+    @Override
+    public boolean updateEvent(Event newEvent) {
+        Optional<Event> eventToUpdate = getEventById(newEvent.getId());
+        if(eventToUpdate.isPresent()) {
+            Event event = eventToUpdate.get();
+            event.setAuthor(newEvent.getAuthor());
+            event.setDateOfAddition(newEvent.getDateOfAddition());
+            event.setDescription(newEvent.getDescription());
+            event.setTitle(newEvent.getTitle());
+            eventRepository.saveAndFlush(event);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public void deleteEvent(Long id) {
+        eventRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteAllTestEvents() {
+        eventRepository.deleteAll();
+    }
 }

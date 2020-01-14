@@ -1,7 +1,11 @@
 package pl.szarek.projekt_sonar.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "events")
@@ -11,20 +15,25 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String author;
+
     @Column(name = "date_of_addition")
-    private Date datOfAddition;
+    private Timestamp dateOfAddition;
     private String title;
     private String description;
 
-    public Event(String author, Date datOfAddition, String title, String description) {
+    @JsonManagedReference
+    @OneToMany(mappedBy="event", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Attendee> attendees;
+
+    public Event(String author, String title, String description) {
         this.author = author;
-        this.datOfAddition = datOfAddition;
+        this.dateOfAddition = Timestamp.valueOf(LocalDateTime.now());
         this.title = title;
         this.description = description;
     }
 
     public Event() {
-
+        this.dateOfAddition = Timestamp.valueOf(LocalDateTime.now());
     }
 
     public Long getId() {
@@ -43,14 +52,6 @@ public class Event {
         this.author = author;
     }
 
-    public Date getDatOfAddition() {
-        return datOfAddition;
-    }
-
-    public void setDatOfAddition(Date datOfAddition) {
-        this.datOfAddition = datOfAddition;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -65,5 +66,21 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Timestamp getDateOfAddition() {
+        return dateOfAddition;
+    }
+
+    public void setDateOfAddition(Timestamp dateOfAddition) {
+        this.dateOfAddition = dateOfAddition;
+    }
+
+    public List<Attendee> getAttendees() {
+        return attendees;
+    }
+
+    public void setAttendees(List<Attendee> attendees) {
+        this.attendees = attendees;
     }
 }
